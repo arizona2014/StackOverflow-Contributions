@@ -1,0 +1,56 @@
+The best approach is to make yourown validation function. Take this as an example :
+
+
+    $scope.validateDateFormat = function(){
+
+      var err = 1;
+      var birth = $('#dobTxt').val();
+
+      if( birth !== undefined ) {
+
+          err = 0;
+          var date = birth.split('/');
+          var day = date[0];
+          var month = date[1];
+          var year = date[2];
+          var thisYear = new Date().getFullYear();
+
+          if(day < 1 || day > 31)
+          {
+              err = 1;
+          }
+
+          if(month < 1 || month > 12)
+          {
+              err = 1;
+          }
+
+
+          if(year < 1900 || year > (thisYear - 15))
+
+          {
+              err = 1;
+          }
+
+          if ((month==4 || month==6 || month==9 || month==11) && day==31) {
+              err = 1;
+          }
+
+          if (month == 2) {
+              var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+              if (day>29 || (day==29 && !isleap)) {
+                  err = 1;
+              }
+          }
+
+      }
+
+      if(err){
+          $scope.forms.registerForm.dobTxt.$setValidity("date", false);
+      }
+
+    };
+
+If you want to validate when the input loses focus, you should put this code : 
+
+    <input  ng-blur="validateDateFormat()"  required ng-model="user.dob" placeholder="Date of Birth* dd/mm/yyyy" class="dob" type="text" id="dobTxt" name="dobTxt">  
