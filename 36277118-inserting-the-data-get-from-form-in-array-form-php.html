@@ -1,0 +1,99 @@
+Normally for this type of manipulations you need to carefully construct your inputs. That's why the solution of Manjeet Barnala of your other post isn't the best for your problem.
+
+So the best approach would be :
+
+    <form method="post" action="Resume_data_form_2_confirm.php">
+	    <div id="main_wrap">
+
+		<div class="clone" id="studies1" >
+			<br>Education Level : 
+            <select id="education1" name="education1">
+                <option value="bachelor" selected="selected">Bachelor Degree</option>
+                <option value="master">Master Degree</option>
+                <option value="doctor">Doctoral Degree</option>
+            </select>
+            
+			Major : <input type="text" id="edu_major1" name="edu_major1" placeholder=''>
+            Faculty : <input type="text" id="edu_faculty1" name="edu_faculty1" placeholder=''>
+            
+			<br><br>
+            University : <input type="text" id="edu_university1" name="edu_university1" placeholder=''>
+			
+            Education Hounour : 
+			<select id="edu_honour1" name="edu_honour1">
+				<option value="none" selected="selected">None</option>
+				<option value="cum_laude">Cum Laude</option>
+				<option value="magna">Magna Cum Laude</option>
+				<option value="summa">Summa Cum Laude</option>
+			</select>
+
+            Graduated Year : 
+            <select id="year1" name="year1">
+				<?php 
+				$curYear = getdate();
+				for($year = 1990 ; $year <= $curYear['year']; $year++){
+				?>
+					<OPTION value = '<?php echo $year;?>'> <?php echo $year;?> </OPTION> 
+				<?php
+				}   
+				?>
+            </select>     
+				
+        </div>
+		
+		<div class="clone" id="studies2" >
+			<br>Education Level : 
+            <select id="education2" name="education2">
+                <option value="bachelor" selected="selected">Bachelor Degree</option>
+                <option value="master">Master Degree</option>
+                <option value="doctor">Doctoral Degree</option>
+            </select>
+            
+			Major : <input type="text" id="edu_major2" name="edu_major2" placeholder=''>
+            Faculty : <input type="text" id="edu_faculty2" name="edu_faculty2" placeholder=''>
+            
+			<br><br>
+            University : <input type="text" id="edu_university2" name="edu_university2" placeholder=''>
+			
+            Education Hounour : 
+			<select id="edu_honour2" name="edu_honour2">
+				<option value="none" selected="selected">None</option>
+				<option value="cum_laude">Cum Laude</option>
+				<option value="magna">Magna Cum Laude</option>
+				<option value="summa">Summa Cum Laude</option>
+			</select>
+
+            Graduated Year : 
+            <select id="year2" name="year2">
+				<?php 
+				$curYear = getdate();
+				for($year = 1990 ; $year <= $curYear['year']; $year++){
+				?>
+					<OPTION value = '<?php echo $year;?>'> <?php echo $year;?> </OPTION> 
+				<?php
+				}   
+				?>
+            </select>     
+				
+        </div>		
+		
+		... // here you'll have as many clone class divs as you need with corresponding ids ... studies3, studies4, ... etc
+		
+
+		<div style="float:right;">
+			<input type="button" value="+" id="more" style="float:right;"> 
+		</div>           
+
+		<br><br>
+
+		<div style="float:right;">
+			<input type="submit" name="confirm" value="Confirm"  style="float:right;">
+		</div>
+
+	</div> // MAIN_WRAP
+
+    </form>
+
+Once you get this structure into your html, you can recuperate easily all the inputs values in Resume_data_form_2_confirm.php 
+
+Your real problem is how to create well the structure I displayed above.
