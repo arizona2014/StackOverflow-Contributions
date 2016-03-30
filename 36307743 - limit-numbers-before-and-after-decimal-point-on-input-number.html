@@ -1,0 +1,14 @@
+For the fraction its pretty easy as you can use Angular number filter. As for the number before the digit you should create a filter like this :
+
+    app.filter('beforeDigit', function ($filter) {
+       return function (input) {
+        if (input>1000) 
+           return (input % 1000)
+        elseif(input<1000)
+           return input; 
+       };
+    });
+
+So in the end you will end up with something like this :
+
+    {{val | filter:{number:3}, filter:beforeDigit }}
