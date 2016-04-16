@@ -1,0 +1,4 @@
+In php by no means you can't have Desktop Path on a real server, as php is serverside. However if you're on localhost like xampp, wamp, or whatever on windows you try this :
+
+<?php  echo getenv("HOMEDRIVE").getenv("HOMEPATH")."\Desktop";  ?>
+
