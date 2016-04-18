@@ -1,0 +1,33 @@
+var tab = "<div class='table-strip'>";
+var resLen = result.length;
+
+var j = 0;
+for(var i=0;i<resLen;i++)
+{
+	
+	if( j === 0){
+		tab += "<div class='row'>";     // start of row with 6 students
+	}	
+	j++;	
+	
+	var exam = 'fa1';
+	tab += "<div class='col-xs-2'>";  // start of element
+	if(exam === 'fa1' || exam === 'fa2' || exam === 'fa3' ||exam === 'fa4')
+	{
+		var bgColor='score-bg-red';
+		var imgs='std4.png';
+	}
+
+	tab += "<a href='#' data-toggle='tooltip' data-placement='center' title='"+result[i]["student_name"]+"' class='bg-grey-tooltip'><img class='studimg' src='<?echo base_url()?>/application/assets/dist/img/studlist/'><span class='score "+bgColor+"'>"+result[i]["marks"]+"</span></a>";
+	tab += "</div>";	  // end of element
+
+	
+	if( ( j === 5 ) || ( i === resLen-1 ) ) {
+		tab += "</div>";     // end of row with 6 students or end of elements in the last row 
+		j = 0;
+	}
+
+}
+
+tab +="</div>";    // end of table-strip class 
+
