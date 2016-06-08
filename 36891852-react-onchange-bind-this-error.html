@@ -1,0 +1,160 @@
+So i have this REACT code which should work :
+
+App.jsx:
+
+	class App extends Component {
+		constructor(props){				
+			super(props);
+            this.state = {count: props.initialCount};
+            this.onChange = this.onChange.bind(this);
+			this.state = {
+				questions:[
+					{
+						id: 1,
+						text: 'What is your name ?',
+						choices: [
+							{
+								id: 'a',
+								text: 'Michael'
+							},
+							{
+								id: 'b',
+								text: 'Brad'
+							},
+							{
+								id: 'c',
+								text: 'Steven'
+							}
+						],
+						correct: 'b'
+					},
+					{
+						id: 2,
+						text: 'What is your mothers name ?',
+						choices: [
+							{
+								id: 'a',
+								text: 'Sara'
+							},
+							{
+								id: 'b',
+								text: 'Sue'
+							},
+							{
+								id: 'c',
+								text: 'Donna'
+							}
+						],
+						correct: 'c'
+					},				
+					{
+						id: 3,
+						text: 'What is your father name ?',
+						choices: [
+							{
+								id: 'a',
+								text: 'Bobby'
+							},
+							{
+								id: 'b',
+								text: 'Harry'
+							},
+							{
+								id: 'c',
+								text: 'Wayne'
+							}
+						],
+						correct: 'a'
+					},								
+					{
+						id: 4,
+						text: 'What is your friend name ?',
+						choices: [
+							{
+								id: 'a',
+								text: 'John'
+							},
+							{
+								id: 'b',
+								text: 'Paul'
+							},
+							{
+								id: 'c',
+								text: 'Dan'
+							}
+						],
+						correct: 'c'
+					}				
+				],
+				score: 0,
+				current: 1
+			}		
+		}
+		render(){
+			return(
+				<div onClick={this.onChange}>
+					<QuestionList {...this.state} />
+				</div>
+			)
+		}
+	}
+
+	export default App
+
+QuestionList.jsx :
+
+	class QuestionList extends Component {
+		render(){
+			return(
+				<div className="questions">
+					{
+						this.props.questions.map(question => {
+						
+							return <Question question={question} key={question.id} {...this.props} />
+							
+						})
+					}
+				</div>
+			)
+		}
+	}
+
+	export default QuestionList
+
+Question.jsx :
+
+
+	class Question extends Component {	
+		render(){
+			const {question} = this.props;
+			return(
+				<div className="well">
+					<h3 >{question.text}</h3>
+					<hr />
+					<ul className="list-group">
+						{
+							this.props.question.choices.map(choice => {
+								return(
+									<li className="list-group-item">
+										{choice.id} <input type="radio" name={question.id} value={choice.id} /> {choice.text}
+									</li>
+								)
+							})
+						}
+					</ul>
+				</div>
+			)
+		}
+	}
+
+	export default Question
+
+except it throws this error in console :  **TypeError: _this.onChange is undefined**
+
+I google it and found out that : 
+
+> Make sure you do this.onChange = this.onChange.bind(this) in your constructor
+
+But when I add that on my controller i get this error : **TypeError: this.onChange is undefined**
+
+ 
