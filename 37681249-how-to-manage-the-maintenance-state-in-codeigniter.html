@@ -1,0 +1,15 @@
+In your core directory create a new controller called MY_Controller.php
+
+In this file you should put this code :
+ 
+public function __construct()
+{
+   parent::__construct();
+
+   if($this->config->item('maintenance_on') == TRUE) {
+     $this->load->view('maintenance');
+     die();
+   }
+}
+
+All your controllers should inherit this controller in order to work.
